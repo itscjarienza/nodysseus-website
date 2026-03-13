@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0F0F0F"/>
+
+  <!-- Subtle radial glow -->
+  <defs>
+    <radialGradient id="glow" cx="72%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#EDE0C4" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#0F0F0F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Wave lines (decorative) -->
+  <path d="M0 510 Q300 440 600 490 Q900 540 1200 465" stroke="#EDE0C4" stroke-width="0.8" fill="none" opacity="0.07"/>
+  <path d="M0 550 Q300 480 600 530 Q900 580 1200 505" stroke="#EDE0C4" stroke-width="0.5" fill="none" opacity="0.04"/>
+  <path d="M0 590 Q300 520 600 570 Q900 620 1200 545" stroke="#EDE0C4" stroke-width="0.3" fill="none" opacity="0.03"/>
+
+  <!-- Left vertical accent line -->
+  <line x1="88" y1="80" x2="88" y2="550" stroke="#EDE0C4" stroke-width="0.6" opacity="0.25"/>
+
+  <!-- Compass mark — centered at (200, 315), scaled to ~110px -->
+  <g transform="translate(200, 315)">
+    <line x1="0" y1="-42" x2="0" y2="-18" stroke="#EDE0C4" stroke-width="1.8"/>
+    <line x1="0" y1="18"  x2="0" y2="42"  stroke="#EDE0C4" stroke-width="1.8"/>
+    <line x1="-42" y1="0" x2="-18" y2="0" stroke="#EDE0C4" stroke-width="1.8"/>
+    <line x1="18"  y1="0" x2="42"  y2="0" stroke="#EDE0C4" stroke-width="1.8"/>
+    <line x1="-29" y1="-29" x2="-13" y2="-13" stroke="#EDE0C4" stroke-width="1.8" opacity="0.5"/>
+    <line x1="29"  y1="-29" x2="13"  y2="-13" stroke="#EDE0C4" stroke-width="1.8" opacity="0.5"/>
+    <line x1="-29" y1="29"  x2="-13" y2="13"  stroke="#EDE0C4" stroke-width="1.8" opacity="0.5"/>
+    <line x1="29"  y1="29"  x2="13"  y2="13"  stroke="#EDE0C4" stroke-width="1.8" opacity="0.5"/>
+    <circle cx="0" cy="0" r="16" stroke="#EDE0C4" stroke-width="1.8" fill="none"/>
+    <circle cx="0" cy="0" r="7"  fill="#EDE0C4"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text
+    x="340" y="285"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="70"
+    font-weight="400"
+    letter-spacing="14"
+    fill="#EDE0C4">NODYSSEUS</text>
+
+  <!-- Divider -->
+  <line x1="340" y1="314" x2="1112" y2="314" stroke="#EDE0C4" stroke-width="0.6" opacity="0.25"/>
+
+  <!-- Tagline -->
+  <text
+    x="342" y="358"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="20"
+    font-weight="300"
+    letter-spacing="4.5"
+    fill="#EDE0C4"
+    opacity="0.55">AI SYSTEMS IMPLEMENTATION FOR SERVICE BUSINESSES</text>
+
+  <!-- Pull quote -->
+  <text
+    x="342" y="430"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="22"
+    font-style="italic"
+    font-weight="400"
+    fill="#EDE0C4"
+    opacity="0.4">"Chart a course for your business."</text>
+
+  <!-- URL -->
+  <text
+    x="342" y="500"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="17"
+    font-weight="300"
+    letter-spacing="2.5"
+    fill="#EDE0C4"
+    opacity="0.28">nodysseus.co</text>
+
+  <!-- Bottom border accent -->
+  <line x1="88" y1="570" x2="1112" y2="570" stroke="#EDE0C4" stroke-width="0.6" opacity="0.12"/>
+</svg>

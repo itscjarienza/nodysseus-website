@@ -8,8 +8,17 @@
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Nodysseus | AI Systems Implementation" />
   <meta property="og:description" content="Chart a course for your business. We map your operation, find the waste, and build the AI system that removes it." />
-  <meta property="og:url" content="https://www.nodysseus.co" />
+  <meta property="og:url" content="https://nodysseus.co" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://nodysseus.co/og-image.svg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nodysseus | AI Systems Implementation" />
+  <meta name="twitter:description" content="Chart a course for your business. We map your operation, find the waste, and build the AI system that removes it." />
+  <meta name="twitter:image" content="https://nodysseus.co/og-image.svg" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Epilogue:wght@300;400;500&family=Fraunces:opsz,wght@9..144,400&display=swap" rel="stylesheet">
   <style>
 
@@ -784,7 +793,7 @@
 </div>
 
 <!-- ─── HERO ─────────────────────────────────────── -->
-<section class="hero">
+<section class="hero" id="home">
   <div class="hero-bg"></div>
   <svg class="hero-waves" viewBox="0 0 1440 900" preserveAspectRatio="none">
     <path d="M0 600 Q360 480 720 580 Q1080 680 1440 560" stroke="#EDE0C4" stroke-width="1" fill="none"/>
@@ -1060,5 +1069,47 @@
   </div>
 </footer>
 
+<script>
+  // ─── CLEAN URLS (no hash in address bar) ─────────────────
+  (function () {
+    // Intercept all hash-based links and replace with path-based navigation
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var id = this.getAttribute('href').slice(1);
+        var target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          history.pushState(null, '', '/' + id);
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // On load: if URL is path-based (e.g. /book), scroll to that section
+    var path = location.pathname.replace(/^\//, '').replace(/\/$/, '');
+    if (path) {
+      var el = document.getElementById(path);
+      if (el) {
+        setTimeout(function () { el.scrollIntoView({ behavior: 'smooth' }); }, 100);
+      }
+    }
+
+    // Update URL as user scrolls through sections
+    var sections = document.querySelectorAll('section[id], .hero');
+    if ('IntersectionObserver' in window && sections.length) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var newPath = (entry.target.id && entry.target.id !== 'home') ? '/' + entry.target.id : '/';
+            if (location.pathname !== newPath) {
+              history.replaceState(null, '', newPath);
+            }
+          }
+        });
+      }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
+      sections.forEach(function (s) { io.observe(s); });
+    }
+  })();
+</script>
 </body>
 </html>
