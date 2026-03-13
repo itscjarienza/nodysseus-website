@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nodysseus | AI Systems Implementation for Service Businesses</title>
+  <meta name="description" content="Nodysseus builds holistic AI systems for service businesses. We map your operation, find the waste, and implement AI where it actually belongs." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Nodysseus | AI Systems Implementation" />
+  <meta property="og:description" content="Chart a course for your business. We map your operation, find the waste, and build the AI system that removes it." />
+  <meta property="og:url" content="https://www.nodysseus.co" />
+  <meta property="og:type" content="website" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Epilogue:wght@300;400;500&family=Fraunces:opsz,wght@9..144,400&display=swap" rel="stylesheet">
+  <style>
+
+    /* ─── TOKENS ─────────────────────────────────────── */
+    :root {
+      --near-black:    #0F0F0F;
+      --stone:         #3A3A3A;
+      --mid:           #6B6B6B;
+      --parchment:     #EDE0C4;
+      --parchment-dim: #C8B89A;
+      --off-white:     #F8F6F2;
+      --white:         #FFFFFF;
+
+      --font-display: 'Cinzel', serif;
+      --font-body:    'Epilogue', sans-serif;
+      --font-accent:  'Fraunces', serif;
+    }
+
+    /* ─── RESET ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--near-black);
+      color: var(--off-white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── UTILITY ────────────────────────────────────── */
+    .label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .parchment { color: var(--parchment); }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(237,224,196,0.15);
+      margin: 0;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ─── NAV ────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(15,15,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(237,224,196,0.1);
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-wordmark {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--parchment);
+    }
+    /* Compass mark SVG inline */
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--parchment); }
+    .nav-cta {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--near-black);
+      background: var(--parchment);
+      padding: 10px 24px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--parchment-dim); }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--parchment);
+      transition: all 0.3s;
+    }
+
+    /* ─── HERO ───────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 40px 80px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(237,224,196,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(237,224,196,0.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    /* Subtle wave lines in background */
+    .hero-waves {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.04;
+    }
+    .hero-content {
+      max-width: 1080px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .hero-eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--parchment);
+      opacity: 0.5;
+    }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 7vw, 88px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      color: var(--off-white);
+      margin-bottom: 32px;
+      max-width: 900px;
+    }
+    .hero-headline em {
+      font-style: normal;
+      color: var(--parchment);
+    }
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(248,246,242,0.65);
+      max-width: 540px;
+      margin-bottom: 56px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--near-black);
+      background: var(--parchment);
+      padding: 16px 40px;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--parchment-dim); transform: translateY(-1px); }
+    .btn-ghost {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      background: none;
+      padding: 16px 0;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: gap 0.2s;
+    }
+    .btn-ghost:hover { gap: 16px; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 48px;
+      left: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.35;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: var(--parchment);
+    }
+
+    /* ─── SECTION BASE ───────────────────────────────── */
+    section {
+      padding: 120px 40px;
+    }
+    .section-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .section-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 80px;
+      align-items: start;
+    }
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      color: var(--off-white);
+    }
+    .section-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(248,246,242,0.65);
+    }
+    .section-body p + p { margin-top: 20px; }
+
+    /* ─── PROBLEM SECTION ────────────────────────────── */
+    .problem {
+      background: var(--near-black);
+      border-top: 1px solid rgba(237,224,196,0.1);
+      border-bottom: 1px solid rgba(237,224,196,0.1);
+    }
+    .problem-statement {
+      font-family: var(--font-accent);
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--parchment);
+      border-left: 1px solid var(--parchment);
+      padding-left: 32px;
+      margin: 64px 0;
+      max-width: 700px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(237,224,196,0.1);
+      border: 1px solid rgba(237,224,196,0.1);
+      margin-top: 80px;
+    }
+    .col-card {
+      background: var(--near-black);
+      padding: 40px 32px;
+    }
+    .col-card-num {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--parchment);
+      margin-bottom: 24px;
+    }
+    .col-card-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--off-white);
+      margin-bottom: 16px;
+    }
+    .col-card-body {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(248,246,242,0.55);
+    }
+
+    /* ─── WHAT WE DO ─────────────────────────────────── */
+    .services {
+      background: var(--off-white);
+      color: var(--near-black);
+    }
+    .services .section-headline { color: var(--near-black); }
+    .services .section-body { color: var(--stone); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(15,15,15,0.12);
+      border: 1px solid rgba(15,15,15,0.12);
+      margin-top: 64px;
+    }
+    .service-card {
+      background: var(--off-white);
+      padding: 48px 40px;
+    }
+    .service-card-label {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+    .service-card-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--near-black);
+      margin-bottom: 16px;
+    }
+    .service-card-body {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--stone);
+    }
+    .service-card-items {
+      margin-top: 20px;
+      list-style: none;
+    }
+    .service-card-items li {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--mid);
+      padding: 6px 0;
+      border-top: 1px solid rgba(15,15,15,0.08);
+    }
+    .service-card-items li::before {
+      content: '\2013\00a0\00a0';
+      color: var(--parchment-dim);
+    }
+
+    /* ─── HOW IT WORKS ───────────────────────────────── */
+    .process {
+      background: var(--near-black);
+    }
+    .process-steps {
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(237,224,196,0.1);
+      border: 1px solid rgba(237,224,196,0.1);
+    }
+    .process-step {
+      background: var(--near-black);
+      padding: 40px 32px;
+      position: relative;
+    }
+    .process-step-num {
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--parchment);
+      opacity: 0.5;
+      margin-bottom: 32px;
+    }
+    .process-step-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--off-white);
+      margin-bottom: 12px;
+    }
+    .process-step-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(248,246,242,0.5);
+    }
+    .process-step-note {
+      margin-top: 20px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--parchment);
+      opacity: 0.7;
+    }
+
+    /* ─── PROOF ──────────────────────────────────────── */
+    .proof {
+      background: #0A0A0A;
+      border-top: 1px solid rgba(237,224,196,0.1);
+    }
+    .proof-stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(237,224,196,0.1);
+      border: 1px solid rgba(237,224,196,0.1);
+      margin-bottom: 80px;
+    }
+    .proof-stat {
+      background: #0A0A0A;
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .proof-stat-num {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 400;
+      color: var(--parchment);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .proof-stat-label {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .proof-cases {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(237,224,196,0.1);
+      border: 1px solid rgba(237,224,196,0.1);
+    }
+    .proof-case {
+      background: #0A0A0A;
+      padding: 48px 40px;
+    }
+    .proof-case-tag {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      margin-bottom: 24px;
+    }
+    .proof-case-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--off-white);
+      margin-bottom: 20px;
+    }
+    .proof-case-body {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(248,246,242,0.55);
+    }
+    .proof-case-dept {
+      margin-top: 24px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--parchment-dim);
+    }
+
+    /* ─── PHILOSOPHY ─────────────────────────────────── */
+    .philosophy {
+      background: var(--near-black);
+      position: relative;
+      overflow: hidden;
+    }
+    .philosophy::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(237,224,196,0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .philosophy-pull {
+      font-family: var(--font-accent);
+      font-size: clamp(22px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--parchment);
+      max-width: 720px;
+      margin: 64px 0;
+    }
+    .philosophy-trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      margin-top: 80px;
+      padding-top: 64px;
+      border-top: 1px solid rgba(237,224,196,0.1);
+    }
+    .philosophy-item-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      margin-bottom: 20px;
+    }
+    .philosophy-item-body {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(248,246,242,0.55);
+    }
+
+    /* ─── CTA ────────────────────────────────────────── */
+    .cta-section {
+      background: var(--parchment);
+      color: var(--near-black);
+      text-align: center;
+      padding: 120px 40px;
+    }
+    .cta-label {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 32px;
+    }
+    .cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 64px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      color: var(--near-black);
+      margin-bottom: 24px;
+    }
+    .cta-sub {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--stone);
+      max-width: 520px;
+      margin: 0 auto 48px;
+    }
+    .btn-dark {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      background: var(--near-black);
+      padding: 18px 48px;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-dark:hover { background: var(--stone); transform: translateY(-1px); }
+    .cta-note {
+      margin-top: 20px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--mid);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--near-black);
+      border-top: 1px solid rgba(237,224,196,0.1);
+      padding: 64px 40px;
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.12em;
+      color: var(--parchment);
+      margin-bottom: 12px;
+    }
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(248,246,242,0.4);
+      line-height: 1.6;
+    }
+    .footer-col-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(248,246,242,0.5);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--parchment); }
+    .footer-bottom {
+      max-width: 1080px;
+      margin: 48px auto 0;
+      padding-top: 32px;
+      border-top: 1px solid rgba(237,224,196,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom-copy {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(248,246,242,0.3);
+    }
+    .footer-bottom-link {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(248,246,242,0.3);
+      transition: color 0.2s;
+    }
+    .footer-bottom-link:hover { color: var(--parchment); }
+
+    /* ─── MOBILE NAV OVERLAY ─────────────────────────── */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--near-black);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      padding: 40px;
+    }
+    .nav-overlay.open { display: flex; }
+    .nav-overlay a {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.06em;
+      color: var(--off-white);
+      transition: color 0.2s;
+    }
+    .nav-overlay a:hover { color: var(--parchment); }
+    .nav-overlay-close {
+      position: absolute;
+      top: 24px;
+      right: 40px;
+      background: none;
+      border: none;
+      color: var(--mid);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .section-header { grid-template-columns: 1fr; gap: 32px; }
+      .three-col, .services-grid, .proof-cases, .philosophy-trio { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .proof-stat-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 48px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      section { padding: 80px 24px; }
+      .hero { padding: 100px 24px 80px; }
+      .nav { padding: 0 24px; }
+      footer { padding: 64px 24px; }
+    }
+    @media (max-width: 600px) {
+      .process-steps { grid-template-columns: 1fr; }
+      .hero-headline { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────── -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <!-- Compass node mark -->
+      <line x1="16" y1="4"  x2="16" y2="11" stroke="#EDE0C4" stroke-width="0.75"/>
+      <line x1="16" y1="21" x2="16" y2="28" stroke="#EDE0C4" stroke-width="0.75"/>
+      <line x1="4"  y1="16" x2="11" y2="16" stroke="#EDE0C4" stroke-width="0.75"/>
+      <line x1="21" y1="16" x2="28" y2="16" stroke="#EDE0C4" stroke-width="0.75"/>
+      <line x1="7.5"  y1="7.5"  x2="12" y2="12" stroke="#EDE0C4" stroke-width="0.75" opacity="0.5"/>
+      <line x1="24.5" y1="7.5"  x2="20" y2="12" stroke="#EDE0C4" stroke-width="0.75" opacity="0.5"/>
+      <line x1="7.5"  y1="24.5" x2="12" y2="20" stroke="#EDE0C4" stroke-width="0.75" opacity="0.5"/>
+      <line x1="24.5" y1="24.5" x2="20" y2="20" stroke="#EDE0C4" stroke-width="0.75" opacity="0.5"/>
+      <circle cx="16" cy="16" r="4.5" stroke="#EDE0C4" stroke-width="0.75" fill="none"/>
+      <circle cx="16" cy="16" r="2"   fill="#EDE0C4"/>
+    </svg>
+    <span class="nav-wordmark">NODYSSEUS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#what-we-do">What We Do</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#proof">Our Work</a></li>
+    <li><a href="#philosophy">The Philosophy</a></li>
+  </ul>
+  <a href="#book" class="nav-cta">Book a Call</a>
+  <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" onclick="document.querySelector('.nav-overlay').classList.add('open'); this.setAttribute('aria-expanded','true')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile overlay -->
+<div class="nav-overlay" role="dialog" aria-label="Navigation">
+  <button class="nav-overlay-close" onclick="document.querySelector('.nav-overlay').classList.remove('open')">Close</button>
+  <a href="#what-we-do" onclick="document.querySelector('.nav-overlay').classList.remove('open')">What We Do</a>
+  <a href="#process"    onclick="document.querySelector('.nav-overlay').classList.remove('open')">How It Works</a>
+  <a href="#proof"      onclick="document.querySelector('.nav-overlay').classList.remove('open')">Our Work</a>
+  <a href="#philosophy" onclick="document.querySelector('.nav-overlay').classList.remove('open')">The Philosophy</a>
+  <a href="#book"       onclick="document.querySelector('.nav-overlay').classList.remove('open')">Book a Call</a>
+</div>
+
+<!-- ─── HERO ─────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <svg class="hero-waves" viewBox="0 0 1440 900" preserveAspectRatio="none">
+    <path d="M0 600 Q360 480 720 580 Q1080 680 1440 560" stroke="#EDE0C4" stroke-width="1" fill="none"/>
+    <path d="M0 650 Q360 520 720 630 Q1080 740 1440 610" stroke="#EDE0C4" stroke-width="0.5" fill="none"/>
+    <path d="M0 700 Q360 580 720 680 Q1080 780 1440 660" stroke="#EDE0C4" stroke-width="0.3" fill="none" opacity="0.5"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="label">AI Systems Implementation</span>
+    </div>
+    <h1 class="hero-headline">Chart a course<br>for your <em>business.</em></h1>
+    <p class="hero-sub">Most businesses are lost in their own operations. Not because the work is hard — because nothing is connected. We map the system, find where AI belongs, and build it.</p>
+    <div class="hero-actions">
+      <a href="#book" class="btn-primary">Book a Discovery Call</a>
+      <a href="#what-we-do" class="btn-ghost">See what we build <span>&#8594;</span></a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span class="label" style="writing-mode: vertical-lr; letter-spacing: 0.15em; font-size: 10px;">Scroll</span>
+  </div>
+</section>
+
+<!-- ─── PROBLEM ───────────────────────────────────── -->
+<section class="problem">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-headline">You don't have<br>an AI problem.</h2>
+      <div class="section-body">
+        <p>You have a systems problem. You've got tools. Maybe ChatGPT, maybe a few automations, maybe someone on your team who set up a Zapier flow two years ago. But the manual work is still there. The hours are still disappearing.</p>
+        <p>That's not an AI failure. That's a wiring failure. The tools aren't talking to each other. And the gap between them is where your time goes.</p>
+      </div>
+    </div>
+
+    <blockquote class="problem-statement">
+      "Tame the seas. Or be tamed by them."
+    </blockquote>
+
+    <div class="three-col">
+      <div class="col-card">
+        <div class="col-card-num">01</div>
+        <div class="col-card-title">The Wiring Problem</div>
+        <div class="col-card-body">Tools without a system are just more noise. Every disconnected automation is another manual step in disguise. The work doesn't disappear — it moves.</div>
+      </div>
+      <div class="col-card">
+        <div class="col-card-num">02</div>
+        <div class="col-card-title">The Placement Problem</div>
+        <div class="col-card-body">Most businesses drop AI into the wrong places. Not because they're careless — because they haven't mapped the system first. You can't deploy what you haven't diagnosed.</div>
+      </div>
+      <div class="col-card">
+        <div class="col-card-num">03</div>
+        <div class="col-card-title">The Cost Problem</div>
+        <div class="col-card-body">Manual operations are expensive. Not just in dollars — in hours, in errors, in the attention of people who should be doing higher-value work. That cost compounds every month.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHAT WE DO ────────────────────────────────── -->
+<section class="services" id="what-we-do">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-headline" style="color: var(--near-black);">We take the full view first.<br>Then we set sail.</h2>
+      <div class="section-body" style="color: var(--stone);">
+        <p>We sit down with you. Map the full operation. Identify every place time is leaking, money is leaving, and attention is being wasted on work that shouldn't require a human.</p>
+        <p>Then we build the AI employees that handle it.</p>
+        <p>Not tools. Not dashboards. Agents — custom-built around how your business actually runs, trained on your workflows, and deployed inside your existing stack. The scope is determined by what your operation needs, not what's easiest to sell.</p>
+      </div>
+    </div>
+
+    <p style="color: var(--near-black); font-size: 1.1rem; font-weight: 600; text-align: center; margin: 0 0 2.5rem; letter-spacing: 0.01em;">Your AI crew. Four departments. One operation.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-card-label">Department 01</div>
+        <div class="service-card-title">Sales</div>
+        <div class="service-card-body">Your sales pipeline leaks where humans have to remember things. We close those leaks — AI employees that follow up, log, route, and report so your team focuses on the conversations that actually close.</div>
+        <ul class="service-card-items">
+          <li>Inbound lead capture & routing</li>
+          <li>CRM auto-population</li>
+          <li>Follow-up sequences</li>
+          <li>Pipeline reporting & dashboards</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-card-label">Department 02</div>
+        <div class="service-card-title">Marketing</div>
+        <div class="service-card-body">The gap between generating a lead and converting one is usually a process gap. We build the AI infrastructure that bridges it — delivery, nurture, repurposing — running on its own while your team does the work that requires judgment.</div>
+        <ul class="service-card-items">
+          <li>Lead magnet delivery flows</li>
+          <li>Email nurture automation</li>
+          <li>Content repurposing workflows</li>
+          <li>Funnel automation</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-card-label">Department 03</div>
+        <div class="service-card-title">Operations</div>
+        <div class="service-card-body">Onboarding, intake, fulfillment, data flow — these are the processes that run constantly and invisibly drain your team. We map them, then deploy AI employees that run them. Your people stop feeding the machine and start running the business.</div>
+        <ul class="service-card-items">
+          <li>Client onboarding flows</li>
+          <li>SOP automation</li>
+          <li>Database & inventory updates</li>
+          <li>Internal dashboards</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-card-label">Department 04</div>
+        <div class="service-card-title">Customer Service</div>
+        <div class="service-card-body">Every inquiry that reaches a human who shouldn't be handling it is waste. We build AI agents that triage, respond, route, and log — so your team handles the exceptions, not the volume. The sea of requests doesn't have to swallow your day.</div>
+        <ul class="service-card-items">
+          <li>AI inquiry routing & response</li>
+          <li>FAQ automation</li>
+          <li>Ticket logging & prioritization</li>
+          <li>Payment & billing reconciliation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ───────────────────────────────────── -->
+<section class="process" id="process">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-headline">How it works.</h2>
+      <div class="section-body">
+        <p>Four stages. No skipping steps. The diagnosis comes before the build. That's not a formality — it's the reason the build works.</p>
+      </div>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-step-num">STAGE 01</div>
+        <div class="process-step-name">Discovery</div>
+        <div class="process-step-desc">We understand the business. How it actually runs — not how it looks on paper. Where the time goes. What's manual that shouldn't be.</div>
+        <div class="process-step-note">15–30 min &middot; No cost &middot; No pitch</div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">STAGE 02</div>
+        <div class="process-step-name">Strategy</div>
+        <div class="process-step-desc">We build the plan before the call. Proposed system, expected savings, scope and investment. You see exactly what you're getting before a dollar is spent.</div>
+        <div class="process-step-note">50% deposit to proceed</div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">STAGE 03</div>
+        <div class="process-step-name">Build</div>
+        <div class="process-step-desc">n8n workflows. AI agents. CRM integrations. Automation stacks. We build to the scope, test everything, and deliver a system that runs.</div>
+        <div class="process-step-note">Remaining 50% on delivery</div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">STAGE 04</div>
+        <div class="process-step-name">Retainer</div>
+        <div class="process-step-desc">Monthly maintenance, monitoring, stack management, and new automations as your business grows. The system stays current because we stay involved.</div>
+        <div class="process-step-note">$750–$1,500 / month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROOF ─────────────────────────────────────── -->
+<section class="proof" id="proof">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-headline">The results aren't<br>theoretical.</h2>
+      <div class="section-body">
+        <p>Real businesses. Real operations. Real time recovered. The pattern is always the same — tools without a system. The fix is always the same too.</p>
+      </div>
+    </div>
+
+    <div class="proof-stat-row">
+      <div class="proof-stat">
+        <div class="proof-stat-num">275</div>
+        <div class="proof-stat-label">Operator conversations evaluated</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-num">$3–5K</div>
+        <div class="proof-stat-label">Monthly savings, typical engagement</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-num">10–15hrs</div>
+        <div class="proof-stat-label">Weekly manual work recovered</div>
+      </div>
+    </div>
+
+    <div class="proof-cases">
+      <div class="proof-case">
+        <div class="proof-case-tag">Project 01 &mdash; Distribution</div>
+        <div class="proof-case-title">The manual process that ran itself.</div>
+        <div class="proof-case-body">A chemical distribution broker was manually processing every vendor price update that arrived by email — updating the database by hand, then building individual product price letters for each buyer from scratch. Every time, without exception.<br><br>We built a system that parsed incoming vendor emails, auto-updated the pricing database, and generated customized outbound price letters with his margin built in. Automatically. What took hours per update now takes nothing.</div>
+        <div class="proof-case-dept">Operations &middot; Sales</div>
+      </div>
+      <div class="proof-case">
+        <div class="proof-case-tag">Project 02 &mdash; AI Startup</div>
+        <div class="proof-case-title">Hours of reconciliation. Gone.</div>
+        <div class="proof-case-body">At TurboClaim — an AI-native insurance adjustment platform — the operations team was spending hours, sometimes full days, on manual reconciliation between Stripe payments, CRM data, and follow-up sequences. Customer inquiries were triaged by hand. Nothing talked to anything else.<br><br>We built AI agents to handle inbound inquiries with priority routing to human managers only when required. Stripe and CRM integrated for automated follow-up. Multiple hours of weekly reconciliation eliminated. The team focused on work that actually needed them.</div>
+        <div class="proof-case-dept">Customer Service &middot; Sales &middot; Operations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PHILOSOPHY ────────────────────────────────── -->
+<section class="philosophy" id="philosophy">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-headline">Why Nodysseus.</h2>
+      <div class="section-body">
+        <p>The name is intentional. A node is a connection point in a system. Odysseus is the greatest navigator in Western literature. The one who saw through complexity when everyone else was lost.</p>
+        <p>That's the work. Not the most tools. Not the loudest pitch. The clearest mind in the room — and the system that proves it.</p>
+      </div>
+    </div>
+
+    <blockquote class="philosophy-pull">
+      "Simplicity is not small thinking. It is disciplined thinking."
+    </blockquote>
+
+    <div class="philosophy-trio">
+      <div>
+        <div class="philosophy-item-label">The Stoic Thread</div>
+        <div class="philosophy-item-body">The Stoics removed complexity because complexity is where virtue gets lost. In business terms: every system we build removes what shouldn't be there so the essential work can happen without friction. This isn't aesthetic minimalism. It's operational discipline.</div>
+      </div>
+      <div>
+        <div class="philosophy-item-label">The Odyssey</div>
+        <div class="philosophy-item-body">Odysseus didn't have the most resources. He had the sharpest mind. He navigated because no one else could see what he saw. Your operation has a path through the chaos. Finding it requires someone who's seen enough chaos to know the difference between a storm and a current.</div>
+      </div>
+      <div>
+        <div class="philosophy-item-label">The System Thinking</div>
+        <div class="philosophy-item-body">AI isn't the answer. It's a component. The answer is understanding the system first — where things flow, where they break, where a single well-placed node changes everything. That's what Nodysseus builds. Not tools. Architecture.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ───────────────────────────────────────── -->
+<section class="cta-section" id="book">
+  <p class="cta-label">Start here</p>
+  <h2 class="cta-headline">Your business<br>deserves an epic.</h2>
+  <p class="cta-sub">Most businesses will keep running the same manual processes. Adding tools without building systems. Yours doesn't have to. Book a discovery call — 15 minutes, no pitch. We'll tell you straight whether there's an opportunity.</p>
+  <a href="mailto:cj@nodysseus.co?subject=Discovery Call Request" class="btn-dark">Book a Discovery Call</a>
+  <p class="cta-note">If it's not a fit, you'll know that too.</p>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">NODYSSEUS</div>
+      <p class="footer-tagline">AI systems implementation<br>for service businesses.<br><br>Chart a course for your business.</p>
+    </div>
+    <div>
+      <div class="footer-col-label">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="#what-we-do">What We Do</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#proof">Our Work</a></li>
+        <li><a href="#philosophy">The Philosophy</a></li>
+        <li><a href="#book">Book a Call</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-label">The Ecosystem</div>
+      <ul class="footer-links">
+        <li><a href="https://www.theaiminimalist.co" target="_blank" rel="noopener">The AI Minimalist</a></li>
+        <li><a href="mailto:cj@nodysseus.co">cj@nodysseus.co</a></li>
+        <li><a href="https://www.linkedin.com/in/cjarienza" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-bottom-copy">&copy; 2026 Nodysseus. All rights reserved.</span>
+    <a href="https://www.theaiminimalist.co" class="footer-bottom-link">Powered by The AI Minimalist philosophy.</a>
+  </div>
+</footer>
+
+</body>
+</html>
