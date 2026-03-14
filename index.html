@@ -340,7 +340,7 @@
       margin-bottom: 16px;
     }
     .col-card-body {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 300;
       line-height: 1.7;
       color: rgba(248,246,242,0.55);
@@ -367,7 +367,7 @@
     }
     .service-card-label {
       font-size: 11px;
-      font-weight: 300;
+      font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--mid);
@@ -375,14 +375,14 @@
     }
     .service-card-title {
       font-family: var(--font-display);
-      font-size: 20px;
-      font-weight: 400;
+      font-size: 22px;
+      font-weight: 600;
       letter-spacing: 0.05em;
       color: var(--near-black);
       margin-bottom: 16px;
     }
     .service-card-body {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 300;
       line-height: 1.75;
       color: var(--stone);
@@ -392,7 +392,7 @@
       list-style: none;
     }
     .service-card-items li {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 300;
       color: var(--mid);
       padding: 6px 0;
@@ -417,38 +417,42 @@
     }
     .process-step {
       background: var(--near-black);
-      padding: 40px 32px;
+      padding: 48px 36px;
       position: relative;
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+    .process-step:hover {
+      background: #161616;
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      z-index: 2;
     }
     .process-step-num {
       font-family: var(--font-display);
-      font-size: 10px;
+      font-size: 13px;
       letter-spacing: 0.25em;
       color: var(--parchment);
-      opacity: 0.5;
+      opacity: 0.9;
       margin-bottom: 32px;
     }
     .process-step-name {
       font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 400;
+      font-size: 22px;
+      font-weight: 500;
       letter-spacing: 0.06em;
       color: var(--off-white);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
     .process-step-desc {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 300;
-      line-height: 1.7;
-      color: rgba(248,246,242,0.5);
+      line-height: 1.75;
+      color: rgba(248,246,242,0.55);
     }
-    .process-step-note {
-      margin-top: 20px;
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      color: var(--parchment);
-      opacity: 0.7;
+    .process-cta {
+      margin-top: 56px;
+      text-align: center;
     }
 
     /* ─── PROOF ──────────────────────────────────────── */
@@ -484,7 +488,7 @@
       margin-bottom: 20px;
     }
     .proof-case-body {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 300;
       line-height: 1.75;
       color: rgba(248,246,242,0.55);
@@ -535,7 +539,62 @@
       margin-bottom: 16px;
     }
     .proof-pillar-body {
-      font-size: 14px;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(248,246,242,0.5);
+    }
+
+    /* ─── NORTH STARS ────────────────────────────────── */
+    .north-stars {
+      background: #080808;
+      border-top: 1px solid rgba(237,224,196,0.1);
+      border-bottom: 1px solid rgba(237,224,196,0.1);
+    }
+    .stars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(237,224,196,0.1);
+      border: 1px solid rgba(237,224,196,0.1);
+      margin-top: 64px;
+    }
+    .star-card {
+      background: #080808;
+      padding: 56px 40px;
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+    .star-card:hover {
+      background: #111;
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      z-index: 2;
+      position: relative;
+    }
+    .star-icon {
+      margin-bottom: 32px;
+      opacity: 0.75;
+    }
+    .star-label {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 16px;
+    }
+    .star-headline {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--parchment);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .star-body {
+      font-size: 15px;
       font-weight: 300;
       line-height: 1.75;
       color: rgba(248,246,242,0.5);
@@ -561,7 +620,8 @@
       line-height: 1.4;
       color: var(--parchment);
       max-width: 720px;
-      margin: 64px 0;
+      margin: 64px auto;
+      text-align: center;
     }
     .philosophy-trio {
       display: grid;
@@ -571,16 +631,24 @@
       padding-top: 64px;
       border-top: 1px solid rgba(237,224,196,0.1);
     }
+    .philosophy-trio > div {
+      transition: transform 0.25s;
+      cursor: default;
+    }
+    .philosophy-trio > div:hover {
+      transform: translateY(-8px);
+    }
     .philosophy-item-label {
       font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.2em;
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--parchment);
       margin-bottom: 20px;
     }
     .philosophy-item-body {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 300;
       line-height: 1.75;
       color: rgba(248,246,242,0.55);
@@ -750,7 +818,7 @@
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
       .section-header { grid-template-columns: 1fr; gap: 32px; }
-      .three-col, .services-grid, .proof-cases, .proof-pillars, .philosophy-trio { grid-template-columns: 1fr; }
+      .three-col, .services-grid, .proof-cases, .proof-pillars, .stars-grid, .philosophy-trio { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 48px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
@@ -823,7 +891,7 @@
     <h1 class="hero-headline">Chart a course<br>for your <em>business.</em></h1>
     <p class="hero-sub">Most businesses are lost in their own operations. Not because the work is hard — because nothing is connected. We map the system, find where AI belongs, and build it.</p>
     <div class="hero-actions">
-      <a href="#book" class="btn-primary">Book a Discovery Call</a>
+      <a href="#book" class="btn-primary">Begin Your Odyssey</a>
       <a href="#what-we-do" class="btn-ghost">See what we build <span>&#8594;</span></a>
     </div>
   </div>
@@ -945,26 +1013,25 @@
         <div class="process-step-num">STAGE 01</div>
         <div class="process-step-name">Discovery</div>
         <div class="process-step-desc">We understand the business. How it actually runs — not how it looks on paper. Where the time goes. What's manual that shouldn't be.</div>
-        <div class="process-step-note">15–30 min &middot; No cost &middot; No pitch</div>
       </div>
       <div class="process-step">
         <div class="process-step-num">STAGE 02</div>
         <div class="process-step-name">Strategy</div>
-        <div class="process-step-desc">We build the plan before the call. Proposed system, expected savings, scope and investment. You see exactly what you're getting before a dollar is spent.</div>
-        <div class="process-step-note">50% deposit to proceed</div>
+        <div class="process-step-desc">We build the plan before the build. Proposed system, expected outcomes, scope and investment. You see exactly what you're getting before a dollar is spent.</div>
       </div>
       <div class="process-step">
         <div class="process-step-num">STAGE 03</div>
         <div class="process-step-name">Build</div>
         <div class="process-step-desc">n8n workflows. AI agents. CRM integrations. Automation stacks. We build to the scope, test everything, and deliver a system that runs.</div>
-        <div class="process-step-note">Remaining 50% on delivery</div>
       </div>
       <div class="process-step">
         <div class="process-step-num">STAGE 04</div>
         <div class="process-step-name">Retainer</div>
         <div class="process-step-desc">Monthly maintenance, monitoring, stack management, and new automations as your business grows. The system stays current because we stay involved.</div>
-        <div class="process-step-note">$750–$1,500 / month</div>
       </div>
+    </div>
+    <div class="process-cta">
+      <a href="#book" class="btn-primary">Book a Discovery Call</a>
     </div>
   </div>
 </section>
@@ -973,7 +1040,7 @@
 <section class="proof" id="proof">
   <div class="section-inner">
     <div class="section-header">
-      <h2 class="section-headline">One build. 275 observations.<br>A clear philosophy.</h2>
+      <h2 class="section-headline">One build.<br>275 observations.<br>A clear philosophy.</h2>
       <div class="section-body">
         <p>Real operations. Real outcomes. The conviction behind Nodysseus didn't come from a whitepaper — it came from watching what happens when AI is built into a system correctly.</p>
       </div>
@@ -993,21 +1060,61 @@
       </div>
     </div>
 
-    <div class="proof-pillars">
-      <div class="proof-pillar">
-        <div class="proof-pillar-label">The first thing you recover</div>
-        <div class="proof-pillar-headline">Time</div>
-        <div class="proof-pillar-body">Repeatable tasks that shouldn't require a human stop requiring one. Your team's hours go back to work that actually moves the business.</div>
+  </div>
+</section>
+
+<!-- ─── NORTH STARS ───────────────────────────────── -->
+<section class="north-stars">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-headline">The North Stars</h2>
+      <div class="section-body">
+        <p>Every navigator needs fixed points to steer by. These are the outcomes that tell us the system is working — not metrics we invented, but truths we've watched repeat.</p>
       </div>
-      <div class="proof-pillar">
-        <div class="proof-pillar-label">The second thing you recover</div>
-        <div class="proof-pillar-headline">Attention</div>
-        <div class="proof-pillar-body">Every manual process is a tax on your focus. Remove the process, reclaim the attention. That's where decisions get better.</div>
+    </div>
+    <div class="stars-grid">
+      <div class="star-card">
+        <div class="star-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <!-- Hourglass -->
+            <line x1="13" y1="8" x2="35" y2="8" stroke="#EDE0C4" stroke-width="1.2"/>
+            <line x1="13" y1="40" x2="35" y2="40" stroke="#EDE0C4" stroke-width="1.2"/>
+            <path d="M13 8 L35 8 L24 24 L35 40 L13 40 L24 24 Z" stroke="#EDE0C4" stroke-width="0.8" fill="none"/>
+            <path d="M16 11 Q24 17 32 11" stroke="#EDE0C4" stroke-width="0.5" fill="none" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="star-label">The first thing you recover</div>
+        <div class="star-headline">Time</div>
+        <div class="star-body">Repeatable tasks that shouldn't require a human stop requiring one. Your team's hours go back to work that actually moves the business.</div>
       </div>
-      <div class="proof-pillar">
-        <div class="proof-pillar-label">What follows</div>
-        <div class="proof-pillar-headline">Room to grow</div>
-        <div class="proof-pillar-body">A team no longer feeding the machine has capacity. That's when a business stops reacting and starts building.</div>
+      <div class="star-card">
+        <div class="star-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <!-- North star -->
+            <line x1="24" y1="4" x2="24" y2="44" stroke="#EDE0C4" stroke-width="0.6" opacity="0.35"/>
+            <line x1="4" y1="24" x2="44" y2="24" stroke="#EDE0C4" stroke-width="0.6" opacity="0.35"/>
+            <path d="M24 6 L26.5 21.5 L42 24 L26.5 26.5 L24 42 L21.5 26.5 L6 24 L21.5 21.5 Z" stroke="#EDE0C4" stroke-width="0.85" fill="none"/>
+            <circle cx="24" cy="24" r="3" fill="#EDE0C4"/>
+          </svg>
+        </div>
+        <div class="star-label">The second thing you recover</div>
+        <div class="star-headline">Attention</div>
+        <div class="star-body">Every manual process is a tax on your focus. Remove the process, reclaim the attention. That's where decisions get better.</div>
+      </div>
+      <div class="star-card">
+        <div class="star-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <!-- Sail / horizon -->
+            <line x1="4" y1="36" x2="44" y2="36" stroke="#EDE0C4" stroke-width="0.8" opacity="0.45"/>
+            <path d="M4 40 Q14 35 24 38 Q34 41 44 36" stroke="#EDE0C4" stroke-width="0.5" fill="none" opacity="0.3"/>
+            <line x1="24" y1="36" x2="24" y2="10" stroke="#EDE0C4" stroke-width="0.9"/>
+            <path d="M24 10 L7 32 L24 32 Z" stroke="#EDE0C4" stroke-width="0.85" fill="none"/>
+            <path d="M24 12 L41 24 L24 24 Z" stroke="#EDE0C4" stroke-width="0.85" fill="none" opacity="0.55"/>
+          </svg>
+        </div>
+        <div class="star-label">What follows</div>
+        <div class="star-headline">Room to grow</div>
+        <div class="star-body">A team no longer feeding the machine has capacity. That's when a business stops reacting and starts building.</div>
       </div>
     </div>
   </div>
@@ -1017,7 +1124,7 @@
 <section class="philosophy" id="philosophy">
   <div class="section-inner">
     <div class="section-header">
-      <h2 class="section-headline">Why Nodysseus.</h2>
+      <h2 class="section-headline">Why Nodysseus?</h2>
       <div class="section-body">
         <p>The name is intentional. A node is a connection point in a system. Odysseus is the greatest navigator in Western literature. The one who saw through complexity when everyone else was lost.</p>
         <p>That's the work. Not the most tools. Not the loudest pitch. The clearest mind in the room — and the system that proves it.</p>
