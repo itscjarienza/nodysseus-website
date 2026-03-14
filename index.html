@@ -456,34 +456,6 @@
       background: #0A0A0A;
       border-top: 1px solid rgba(237,224,196,0.1);
     }
-    .proof-stat-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(237,224,196,0.1);
-      border: 1px solid rgba(237,224,196,0.1);
-      margin-bottom: 80px;
-    }
-    .proof-stat {
-      background: #0A0A0A;
-      padding: 48px 40px;
-      text-align: center;
-    }
-    .proof-stat-num {
-      font-family: var(--font-display);
-      font-size: 48px;
-      font-weight: 400;
-      color: var(--parchment);
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-    .proof-stat-label {
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
     .proof-cases {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -523,6 +495,50 @@
       font-weight: 400;
       letter-spacing: 0.08em;
       color: var(--parchment-dim);
+    }
+    .proof-origin-label {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      opacity: 0.65;
+      margin-bottom: 24px;
+    }
+    .proof-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(237,224,196,0.1);
+      border: 1px solid rgba(237,224,196,0.1);
+      margin-top: 1px;
+    }
+    .proof-pillar {
+      background: #0A0A0A;
+      padding: 48px 40px;
+    }
+    .proof-pillar-label {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 16px;
+    }
+    .proof-pillar-headline {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--parchment);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .proof-pillar-body {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(248,246,242,0.5);
     }
 
     /* ─── PHILOSOPHY ─────────────────────────────────── */
@@ -734,9 +750,8 @@
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
       .section-header { grid-template-columns: 1fr; gap: 32px; }
-      .three-col, .services-grid, .proof-cases, .philosophy-trio { grid-template-columns: 1fr; }
+      .three-col, .services-grid, .proof-cases, .proof-pillars, .philosophy-trio { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr 1fr; }
-      .proof-stat-row { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 48px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
       section { padding: 80px 24px; }
@@ -958,24 +973,9 @@
 <section class="proof" id="proof">
   <div class="section-inner">
     <div class="section-header">
-      <h2 class="section-headline">The results aren't<br>theoretical.</h2>
+      <h2 class="section-headline">One build. 275 observations.<br>A clear philosophy.</h2>
       <div class="section-body">
-        <p>Real businesses. Real operations. Real time recovered. The pattern is always the same — tools without a system. The fix is always the same too.</p>
-      </div>
-    </div>
-
-    <div class="proof-stat-row">
-      <div class="proof-stat">
-        <div class="proof-stat-num">275</div>
-        <div class="proof-stat-label">Operator conversations evaluated</div>
-      </div>
-      <div class="proof-stat">
-        <div class="proof-stat-num">$3–5K</div>
-        <div class="proof-stat-label">Monthly savings, typical engagement</div>
-      </div>
-      <div class="proof-stat">
-        <div class="proof-stat-num">10–15hrs</div>
-        <div class="proof-stat-label">Weekly manual work recovered</div>
+        <p>Real operations. Real outcomes. The conviction behind Nodysseus didn't come from a whitepaper — it came from watching what happens when AI is built into a system correctly.</p>
       </div>
     </div>
 
@@ -987,10 +987,27 @@
         <div class="proof-case-dept">Operations &middot; Sales</div>
       </div>
       <div class="proof-case">
-        <div class="proof-case-tag">Project 02 &mdash; AI Startup</div>
-        <div class="proof-case-title">Hours of reconciliation. Gone.</div>
-        <div class="proof-case-body">At TurboClaim — an AI-native insurance adjustment platform — the operations team was spending hours, sometimes full days, on manual reconciliation between Stripe payments, CRM data, and follow-up sequences. Customer inquiries were triaged by hand. Nothing talked to anything else.<br><br>We built AI agents to handle inbound inquiries with priority routing to human managers only when required. Stripe and CRM integrated for automated follow-up. Multiple hours of weekly reconciliation eliminated. The team focused on work that actually needed them.</div>
-        <div class="proof-case-dept">Customer Service &middot; Sales &middot; Operations</div>
+        <div class="proof-origin-label">Where the philosophy came from</div>
+        <div class="proof-case-title">275 demos. One lesson.</div>
+        <div class="proof-case-body">Before Nodysseus, I ran demos for an AI startup serving public adjusters — professionals buried in manual reconciliation during property insurance claims. I watched 275 operators interact with a system that handled inquiry routing, CRM integration, and payment reconciliation automatically.<br><br>Most of them walked in skeptical. Most of them walked out asking when they could start.<br><br>That's when I stopped thinking about AI as a feature and started thinking about it as infrastructure. That's what Nodysseus builds.</div>
+      </div>
+    </div>
+
+    <div class="proof-pillars">
+      <div class="proof-pillar">
+        <div class="proof-pillar-label">The first thing you recover</div>
+        <div class="proof-pillar-headline">Time</div>
+        <div class="proof-pillar-body">Repeatable tasks that shouldn't require a human stop requiring one. Your team's hours go back to work that actually moves the business.</div>
+      </div>
+      <div class="proof-pillar">
+        <div class="proof-pillar-label">The second thing you recover</div>
+        <div class="proof-pillar-headline">Attention</div>
+        <div class="proof-pillar-body">Every manual process is a tax on your focus. Remove the process, reclaim the attention. That's where decisions get better.</div>
+      </div>
+      <div class="proof-pillar">
+        <div class="proof-pillar-label">What follows</div>
+        <div class="proof-pillar-headline">Room to grow</div>
+        <div class="proof-pillar-body">A team no longer feeding the machine has capacity. That's when a business stops reacting and starts building.</div>
       </div>
     </div>
   </div>
