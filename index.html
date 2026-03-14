@@ -661,6 +661,20 @@
       text-align: center;
       padding: 120px 40px;
     }
+    .booking-embed {
+      margin: 48px auto 0;
+      max-width: 960px;
+      width: 100%;
+      border: 1px solid rgba(15,15,15,0.15);
+      overflow: hidden;
+      background: #fff;
+    }
+    .booking-embed iframe {
+      display: block;
+      width: 100%;
+      height: 720px;
+      border: none;
+    }
     .cta-label {
       font-size: 11px;
       font-weight: 300;
@@ -1156,9 +1170,15 @@
 <section class="cta-section" id="book">
   <p class="cta-label">Start here</p>
   <h2 class="cta-headline">Your business<br>deserves an epic.</h2>
-  <p class="cta-sub">Most businesses will keep running the same manual processes. Adding tools without building systems. Yours doesn't have to. Book a discovery call — 15 minutes, no pitch. We'll tell you straight whether there's an opportunity.</p>
-  <a href="mailto:cj@nodysseus.co?subject=Discovery Call Request" class="btn-dark">Book a Discovery Call</a>
-  <p class="cta-note">If it's not a fit, you'll know that too.</p>
+  <p class="cta-sub">Book a discovery call — no pitch, no pressure. We'll tell you straight whether there's an opportunity here. If it's not a fit, you'll know that too.</p>
+  <div class="booking-embed">
+    <iframe
+      src="https://calendar.app.google/6yGSAGG8N3bv37dr6"
+      title="Book a Discovery Call with Nodysseus"
+      loading="lazy"
+    ></iframe>
+  </div>
+  <p class="cta-note">Calendar not loading? <a href="https://calendar.app.google/6yGSAGG8N3bv37dr6" target="_blank" rel="noopener" style="color: var(--stone); text-decoration: underline; font-weight: 400;">Open booking page directly &rarr;</a></p>
 </section>
 
 <!-- ─── FOOTER ────────────────────────────────────── -->
